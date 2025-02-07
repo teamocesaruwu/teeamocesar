@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEAMOCHECHAAAR<3333</title>
+    <style>
+        body {
+            background-color: #660000; /* Fondo oscuro burdeos */
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+            color: #000000; /* Texto claro para contraste */
+        }
+        .card {
+            background-color: #ebdda1; /* Tarjetas en burdeos oscuro */
+            padding: 20px;
+            border-radius: 20px; /* Esquinas redondeadas */
+            width: 60%;
+            margin: auto;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            border: 3px solid #800000; /* Borde en color burdeos */
+            position: relative;
+            z-index: 2;
+        }
+        h1 {
+            color: #b30000; /* Título en burdeos claro */
+        }
+        .heart {
+            font-size: 100px;
+            color: #b30000; /* Corazón en burdeos claro */
+        }
+        button {
+            background-color: #800000; /* Fondo burdeos para los botones */
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 15px;
+            margin: 10px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #660000; /* Burdeos más oscuro en hover */
+        }
+        .hidden {
+            display: none;
+        }
+
+        /* Contenedor de corazones flotantes */
+        #hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000; /* Aseguramos que los corazones estén encima de otros elementos */
+        }
+
+        /* Estilos para los corazones flotantes */
+        .floating-heart {
+            position: absolute;
+            font-size: 30px;
+            color: #b30000; /* Corazones en burdeos claro */
+            animation: floatUp 4s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.5);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Contenedor para los corazones flotantes -->
+    <div id="hearts-container"></div>
+
+    <div class="card" id="page1">
+        <button id="playMusic">Apretame :3</button>
+        <h1>Feliz San Valentín, Cesar ❤️</h1>
+        <p>Sos lo mejor que me ha pasado, te amo cada día más.</p>
+        <div class="heart">❤️</div>
+
+        <!-- GIF de Peach and Goma -->
+        <div class="tenor-gif-embed" data-postid="12154043655874755618" data-share-method="host" data-aspect-ratio="1.23267" data-width="100%"></div>
+
+        <button id="nextPage">Siguiente</button>
+    </div>
+
+    <div class="card hidden" id="page2">
+        <h1>Feliz San Valentín, mi amor ❤️</h1>
+        <p>
+            Hoy es un día especial, un día para celebrar el amor y la conexión que compartimos. Y qué mejor manera de hacerlo que con algo que te tenía pendiente (es un programa bastante simple, pero te quería hacer algo así :c).
+        </p>
+        <p>
+            Para mí, este San Valentín es más que solo un día de celebración. Es un recordatorio de los momentos que hemos compartido, de las risas, las lágrimas y el apoyo mutuo que hemos vivido juntos. Es un recordatorio de la conexión que hemos construido, de la confianza que hemos depositado el uno en el otro.
+        </p>
+        <p>
+            Y aunque solo hemos estado juntos durante 7 meses, siento que he encontrado en vos a mi alma gemela. Sos la única persona que hace que mi corazón lata más fuerte, que me hace sentir viva y conectada con el mundo.
+        </p>
+        <p>
+            En este día de San Valentín, quiero que sepas que te amo infinitamente. Quiero que sepas que sos la razón por la que me levanto cada mañana, mi primer pensamiento y último, el motivo por el que sonrío cada día.
+        </p>
+        <p>
+            Así que en este día de amor y romance, te prometo que siempre voy a estar para vos, que siempre te voy a amar y te voy a apoyar en todo lo que hagas. Te amo, mi amor. Feliz San Valentín. 
+        </p>
+        <p style="text-align: right;"><b>- Flor :3</b></p>
+
+        <!-- GIF de Peach and Goma -->
+        <div class="tenor-gif-embed" data-postid="12588779839829588311" data-share-method="host" data-aspect-ratio="1.05957" data-width="100%"></div>
+
+        <br>
+        <button id="prevPage">Volver</button>
+    </div>
+
+    <audio id="bg-music" loop>
+        <source src="https://www.dropbox.com/scl/fi/vrvaviq6urhpzji0ia48v/loveli-lori-ovg-love-for-you-Official-AMV-LOVELI-LORI.mp3?rlkey=g1pl5l7dvybnjtx41vz80pfo1&raw=1" type="audio/mpeg">
+        Tu navegador no soporta audio.
+    </audio>
+
+    <script>
+        document.getElementById("playMusic").addEventListener("click", function() {
+            const music = document.getElementById("bg-music");
+            music.play().catch(error => console.log("Error al reproducir música:", error));
+        });
+
+        document.getElementById("nextPage").addEventListener("click", function() {
+            document.getElementById("page1").classList.add("hidden");
+            document.getElementById("page2").classList.remove("hidden");
+        });
+
+        document.getElementById("prevPage").addEventListener("click", function() {
+            document.getElementById("page2").classList.add("hidden");
+            document.getElementById("page1").classList.remove("hidden");
+        });
+
+        // Función para generar corazones flotantes
+        function createFloatingHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("floating-heart");
+            heart.innerHTML = "❤️";
+            document.getElementById("hearts-container").appendChild(heart);
+
+            // Posición aleatoria en la pantalla
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = Math.random() * 20 + 10 + "px"; // Tamaño aleatorio
+            heart.style.animationDuration = Math.random() * 3 + 2 + "s"; // Duración de la animación aleatoria
+
+            // Elimina el corazón después de que termina la animación
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+
+        // Genera corazones cada 300ms
+        setInterval(createFloatingHeart, 300);
+    </script>
+
+    <!-- Script de Tenor para mostrar los GIFs -->
+    <script async src="https://tenor.com/embed.js"></script>
+
+</body>
+</html>
